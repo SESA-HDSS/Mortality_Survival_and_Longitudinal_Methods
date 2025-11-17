@@ -9,10 +9,10 @@ The workshop will be delivered through a mix of short lectures, demonstrations, 
 
 ## Learning Outcomes
 By the end of the workshop, participants will be able to:
-•	Calculate mortality rates based on person-years and interpret measures for comparison across time period
-•	Apply survival analysis methods to estimate and interpret time-to-event outcomes
-•	Fit and interpret mixed-effects and multilevel models for repeated measures data
-•	Analyse time series of HDSS indicators, identify trends and seasonal variation, and apply basic forecasting methods
-•	Properly document analytical approaches and ensure reproducibility using R tools
-•	Critically assess scientific publications reporting longitudinal studies utilising HDSS data
+* Calculate mortality rates based on person-years and interpret measures for comparison across time period
+* Apply survival analysis methods to estimate and interpret time-to-event outcomes
+* Fit and interpret mixed-effects and multilevel models for repeated measures data
+* Analyse time series of HDSS indicators, identify trends and seasonal variation, and apply basic forecasting methods
+* Properly document analytical approaches and ensure reproducibility using R tools
+* Critically assess scientific publications reporting longitudinal studies utilising HDSS data
 
