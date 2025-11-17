@@ -1,9 +1,9 @@
 # Refresher on R - Materials
 
-https://leykungetaneh.quarto.pub/r_basics/
+[R Basics](https://leykungetaneh.quarto.pub/r_basics/)
 
-https://leykungetaneh.quarto.pub/r_data_mgt/
+[Data Managemnet using R](https://leykungetaneh.quarto.pub/r_data_mgt/)
 
-https://leykungetaneh.quarto.pub/datavis/
+[Data Visualisation](https://leykungetaneh.quarto.pub/datavis/)
 
-https://leykungetaneh.quarto.pub/handling-missing-data-in-r/
+[Handling Missing Data](https://leykungetaneh.quarto.pub/handling-missing-data-in-r/)
