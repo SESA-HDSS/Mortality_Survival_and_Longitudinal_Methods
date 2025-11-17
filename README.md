@@ -4,7 +4,7 @@ This workshop is part of the Strengthening Ethiopian Surveys and Analytics (SESA
 “R” has become the standard open-source platform for advanced statistical analysis of complex, large-scale data. Building on the introductory R and RStudio course, this workshop focuses on longitudinal data analysis, which is central to HDSS. Longitudinal datasets present both opportunities (temporal information, repeated measures) and challenges (missing data, clustering, time-varying covariates). In this course, we extend participants’ skills in R and RStudio to manage, model, and interpret longitudinal HDSS data, with a focus on practical application and reproducible workflows. 
 ## Aim of the Workshop
 The workshop aims to strengthen the capacity of HDSS research teams in advanced R-based techniques for analysing longitudinal data. The course will emphasise both the technical skills required to conduct analyses and the conceptual understanding needed to interpret results in applied HDSS contexts.
-Content
+## Content
 The workshop will be delivered through a mix of short lectures, demonstrations, and hands-on practical sessions in RStudio. Each topic will begin with a conceptual overview, followed by guided coding exercises using HDSS mock or other datasets. Group discussions and collaborative tasks will encourage peer learning and allow participants to connect methods to their own HDSS experiences, ensuring the training is both applied and directly relevant.
 
 ## Learning Outcomes
