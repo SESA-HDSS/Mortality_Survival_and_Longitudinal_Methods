@@ -1,0 +1,117 @@
+---
+title: "Reproducible Reporting in R using Quarto"
+format: html
+editor: visual
+---
+
+# Introduction
+
+This is a quarto practical using the **Mortality** and [**Gapminder**](https://www.gapminder.org/) dataset.
+
+## Installing and loading packages
+
+### Installing packages
+
+For packages, it is important to set the CRAN mirror to avoid issues during installation, and it's a good practice to install packages before rendering.
+
+```{}
+```
+
+```{r}
+#| label: install-packages
+#| include: false  ## to avoid the code chunk in the output
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+install.packages(c("skimr", "gapminder", "plotly", "gt"))
+```
+
+### Loading packages
+
+```{r}
+#| label: load-packages
+#| message: false
+#| warning: false
+library(tidyverse)
+library(haven)
+library(skimr)
+library(gapminder)
+library(gt)
+library(plotly)
+```
+
+## Import dataset
+
+```{r}
+mortality <- read_dta("Data/mortality17.dta")
+mortality <- as_factor(mortality) ## To see it as categorical variables
+glimpse(mortality) 
+```
+
+### Skim the dataset using the "skimr" package
+
+```{r}
+skim(mortality)
+```
+
+# Data visualization
+
+## Table
+
+The table below shows deaths at a younger age with higher diastolic blood pressure from the mortality dataset.
+
+```{r}
+#| label: death-at-younger-dbp
+#| tbl-cap: Deaths at younger age
+
+
+```
+
+## Figure
+
+The figure below shows a scatter plot of systolic blood pressure by age.
+
+```{r}
+#| label: SBP-by-age
+#| fig-cap: A scatter plot of systolic blood pressure by age
+ggplot(mortality, aes(x = age, y = systolic)) +
+  geom_point(aes(color = sex), alpha=0.7) +
+  geom_smooth(method = "lm") +
+  theme_bw() +
+  labs(
+    title = "Blood Pressure by Sex (Color) and Area (Shape)",
+    x = "Age in years", y = "Systolic (mmHg)")
+```
+
+## Using the Gapminder data
+
+Gapminder combines data from multiple sources into unique, coherent time-series that can’t be found elsewhere.[@bryan2015]
+
+The table below displays the Gapminder data of Ethiopia.
+
+```{r}
+#| label: Gapminder-Ethiopia
+#| tbl-cap: Gapminder data of Ethiopia (1952 - 2007)
+gapminder <- gapminder
+glimpse(gapminder)
+gapminder |> 
+  filter(country == "Ethiopia") |> 
+  gt()
+```
+
+### Animated visualisation
+
+```{r}
+#| label: gapminder-visualisation
+#| fig-cap: Life expectancy by GDP per Capita from 1952 - 2007 
+
+A <- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
+  geom_point(aes(size = pop, frame = year, ids = country)) + 
+  scale_x_log10()
+#A
+An_fig <- ggplotly(A)
+
+An_fig <- An_fig |>  
+  animation_opts(
+    1000, easing = "linear", redraw = FALSE)
+
+An_fig
+```
