@@ -1,5 +1,6 @@
 ---
 title: "Reproducible Reporting in R using Quarto"
+author: Yohanis Alemeshet
 format:
  html:
   toc: true
