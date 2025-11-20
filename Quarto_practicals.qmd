@@ -1,7 +1,13 @@
 ---
 title: "Reproducible Reporting in R using Quarto"
-format: html
+format:
+ html:
+  toc: true
+toc-location: left
 editor: visual
+bibliography: references.bib
+editor_options: 
+  chunk_output_type: inline
 ---
 
 # Introduction
@@ -14,14 +20,13 @@ This is a quarto practical using the **Mortality** and [**Gapminder**](https://w
 
 For packages, it is important to set the CRAN mirror to avoid issues during installation, and it's a good practice to install packages before rendering.
 
-```{}
-```
-
 ```{r}
-#| label: install-packages
-#| include: false  ## to avoid the code chunk in the output
-options(repos = c(CRAN = "https://cloud.r-project.org"))
-install.packages(c("skimr", "gapminder", "plotly", "gt"))
+#| label: installing packages
+#| include: false
+#install.packages("gapminder")
+#install.packages("plotly")
+#install.packages("gt")
+
 ```
 
 ### Loading packages
@@ -41,44 +46,42 @@ library(plotly)
 ## Import dataset
 
 ```{r}
+#| label: Importing dataset
 mortality <- read_dta("Data/mortality17.dta")
-mortality <- as_factor(mortality) ## To see it as categorical variables
+mortality <- as_factor(mortality)
 glimpse(mortality) 
-```
-
-### Skim the dataset using the "skimr" package
-
-```{r}
-skim(mortality)
 ```
 
 # Data visualization
 
 ## Table
 
-The table below shows deaths at a younger age with higher diastolic blood pressure from the mortality dataset.
+@tbl-death-at-younger-age below shows deaths at a younger age with higher diastolic blood pressure from the mortality dataset.
 
 ```{r}
-#| label: death-at-younger-dbp
-#| tbl-cap: Deaths at younger age
-
-
+#| label: tbl-death-at-younger-age
+#| tbl-cap: Death at younger age
+mortality |> 
+  select(age, sex, diastolic, systolic, died) |>
+  filter(age<50, diastolic > 90, died==1) |> 
+  gt()
 ```
 
 ## Figure
 
-The figure below shows a scatter plot of systolic blood pressure by age.
+@fig-SBP-by-age below shows a scatter plot of systolic blood pressure by age.
 
 ```{r}
-#| label: SBP-by-age
-#| fig-cap: A scatter plot of systolic blood pressure by age
-ggplot(mortality, aes(x = age, y = systolic)) +
+#| label: fig-SBP-by-age
+#| fig-cap: A scatter plot of sbp by age
+#| warnings: false
+SBP <- ggplot(mortality, aes(x = age, y = systolic)) +
   geom_point(aes(color = sex), alpha=0.7) +
-  geom_smooth(method = "lm") +
+  # geom_smooth(method ~ "lm") +
   theme_bw() +
-  labs(
-    title = "Blood Pressure by Sex (Color) and Area (Shape)",
-    x = "Age in years", y = "Systolic (mmHg)")
+  labs(title = "Blood Pressure by Sex (Color) and Area (Shape)", x = "Age in years", y = "Systolic (mmHg)")
+
+ggplotly(SBP)
 ```
 
 ## Using the Gapminder data
@@ -114,4 +117,17 @@ An_fig <- An_fig |>
     1000, easing = "linear", redraw = FALSE)
 
 An_fig
+```
+
+## Rendering into PDF
+
+Rendering into PDF needs installing packages in the terminal and R.
+
+```{r}
+## Install Latex in Terminal (Uncomment and install the following in terinal)
+#quarto install tinytex
+
+#Installing in R (Uncomment and install the following in R)
+# install.packages("tinytex") 
+# tinytex::install_tinytex()
 ```
