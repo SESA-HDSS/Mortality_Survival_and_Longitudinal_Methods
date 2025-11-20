@@ -23,6 +23,7 @@ For packages, it is important to set the CRAN mirror to avoid issues during inst
 ```{r}
 #| label: installing packages
 #| include: false
+# Uncomment and install the following packages (preferably in your console)
 #install.packages("gapminder")
 #install.packages("plotly")
 #install.packages("gt")
@@ -121,7 +122,7 @@ An_fig
 
 ## Rendering into PDF
 
-Rendering into PDF needs installing packages in the terminal and R.
+Rendering into PDF needs installing packages in your terminal and R.
 
 ```{r}
 ## Install Latex in Terminal (Uncomment and install the following in terinal)
